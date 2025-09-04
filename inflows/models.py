@@ -12,7 +12,7 @@ class Inflow(models.Model):
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Última atualização')
 
     class Meta:
-        verbose_name = 'Produto'
+        verbose_name = 'Entrada de Produto'
         ordering = ['-created_at']
 
     def __str__(self):

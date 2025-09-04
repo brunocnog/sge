@@ -10,8 +10,8 @@ class Outflow(models.Model):
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Última atualização')
 
     class Meta:
+        verbose_name = 'Saída de Produto'
         ordering = ['-created_at']
 
     def __str__(self):
         return str(self.product)
-    
