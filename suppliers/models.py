@@ -9,6 +9,7 @@ class Supplier(models.Model):
 
     class Meta:
         verbose_name = 'Fornecedor'
+        verbose_name_plural = 'Fornecedores'
         ordering = ['name']
 
     def __str__(self):
