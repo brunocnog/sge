@@ -9,7 +9,7 @@ class Inflow(models.Model):
     quantity = models.IntegerField(default=0, verbose_name='Quantidade')
     description = models.TextField(null=True, blank=True, verbose_name='Descrição')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Data de criação')
-    updated_at = models.DateTimeField(auto_now=True, verbose_name='Última Atualização')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='Última atualização')
 
     class Meta:
         ordering = ['-created_at']

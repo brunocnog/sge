@@ -14,7 +14,7 @@ class Product(models.Model):
     selling_price = models.DecimalField(max_digits=20, decimal_places=2, verbose_name='Preço de venda')
     quantity = models.IntegerField(default=0, verbose_name='Quantidade')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Data de Criação')
-    updated_at = models.DateTimeField(auto_now=True, verbose_name='Última Atualização')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='Última atualização')
 
     class Meta:
         ordering = ['title']
