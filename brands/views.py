@@ -1,3 +1,9 @@
 from django.shortcuts import render
+from django.views.generic import ListView
+from .models import Brand
 
-# Create your views here.
+
+class BrandListView(ListView):
+    model = Brand
+    template_name = 'brand_list.html'
+    context_object_name = 'brands'
