@@ -3,5 +3,5 @@ from .views import BrandListView
 
 
 urlpatterns = [
-    path('brands/list', BrandListView.as_view(), name='brand_list'),
+    path('brands/list/', BrandListView.as_view(), name='brand_list'),
 ]
