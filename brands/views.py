@@ -8,6 +8,7 @@ class BrandListView(ListView):
     model = Brand
     template_name = 'brand_list.html'
     context_object_name = 'brands'
+    ordering = ['id']
 
     def get_queryset(self):
         queryset = super().get_queryset()

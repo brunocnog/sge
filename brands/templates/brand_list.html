@@ -7,6 +7,7 @@
 {% block content %}
 
 <div class="row mb-3">
+
     <div class="col-md-6">
         <form method="get" action="{% url 'brand_list' %}">
             <div class="input-group">
@@ -16,6 +17,12 @@
                 </button>
             </div>
         </form>
+    </div>
+
+    <div class="col-md-6">
+        <a href="{% url 'brand_create' %}" class="btn btn-success float-end">
+            <i class="bi bi-plus">Nova Marca</i>
+        </a>
     </div>
 
 </div>
