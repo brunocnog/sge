@@ -43,3 +43,4 @@ class BrandDeleteView(DeleteView):
     model = Brand
     template_name = 'brand_delete.html'
     success_url = reverse_lazy('brand_list')
+    

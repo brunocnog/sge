@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    SGE - Marcas
+    SGE - Fornecesores
 {% endblock title %}
 
 {% block content %}
 
 <div class="container mt-4">
-    <h3 class="display-6">Editar Marca</h3>
+    <h3 class="display-6">Editar Fornecedor</h3>
 
     <div class="card">
         <div class="card-body">
@@ -18,7 +18,7 @@
             </form>            
         </div>
     </div>
-    <a href="{% url 'brand_list' %}" class="btn btn-secondary mt-3">Cancelar e Voltar para a lista de Marcars</a>
+    <a href="{% url 'supplier_list' %}" class="btn btn-secondary mt-3">Cancelar e Voltar para a lista de Fornecedores</a>
 </div>
 
 {% endblock content %}

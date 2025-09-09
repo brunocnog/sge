@@ -7,18 +7,18 @@
 {% block content %}
 
 <div class="container mt-4">
-  <h3 class="display-6">Cadastrar Marca</h3>
+  <h3 class="display-6">Cadastrar Categoria</h3>
 
   <div class="card">
     <div class="card-body">
       <form method="post" class="form" action="">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Salvar Marca</button>
+        <button type="submit" class="btn btn-primary">Salvar Categoria</button>
       </form>
     </div>
   </div>
-    <a href="{% url 'brand_list' %}" class="btn btn-secondary mt-3">Cancelar e Voltar para a lista de Marcars</a>
+    <a href="{% url 'category_list' %}" class="btn btn-secondary mt-3">Cancelar e Voltar para a lista de Categorias</a>
 </div>
 
 {% endblock content %}
