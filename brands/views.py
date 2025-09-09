@@ -9,6 +9,7 @@ class BrandListView(ListView):
     template_name = 'brand_list.html'
     context_object_name = 'brands'
     ordering = ['id']
+    paginate_by = 3
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -24,7 +25,7 @@ class BrandCreateView(CreateView):
     model = Brand
     template_name = 'brand_create.html'
     form_class = BrandForm
-    success_url = reverse_lazy('brand_list')
+    success_url = reverse_lazy('brand_list')    
 
 
 class BrandDetailView(DetailView):
