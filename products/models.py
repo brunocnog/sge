@@ -17,7 +17,9 @@ class Product(models.Model):
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Última atualização')
 
     class Meta:
+        verbose_name = 'Produto'
         ordering = ['title']
 
     def __str__(self):
         return self.title
+    
