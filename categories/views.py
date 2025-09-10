@@ -9,7 +9,7 @@ class CategoryListView(ListView):
     template_name = 'category_list.html'
     context_object_name = 'categories'
     ordering = ['id']
-    # paginate_by = 3
+    paginate_by = 10
 
     def get_queryset(self):
         queryset = super().get_queryset()

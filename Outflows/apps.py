@@ -5,3 +5,6 @@ class OutflowsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'outflows'
     verbose_name = 'Saída de Produto do Estoque'
+
+    def ready(self):
+        import outflows.signals
