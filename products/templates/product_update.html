@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    SGE - Marcas
+    SGE - Produtos
 {% endblock title %}
 
 {% block content %}
 
 <div class="container mt-4">
-    <h3 class="display-6">Editar Categoria</h3>
+    <h3 class="display-6">Editar Produto</h3>
 
     <div class="card">
         <div class="card-body">
@@ -18,9 +18,7 @@
             </form>            
         </div>
     </div>
-    <a href="{% url 'category_list' %}" class="btn btn-secondary mt-3">Cancelar e Voltar para a lista de Categorias</a>
+    <a href="{% url 'product_list' %}" class="btn btn-secondary mt-3">Cancelar e Voltar para a lista de Produtos</a>
 </div>
 
 {% endblock content %}
-    
-

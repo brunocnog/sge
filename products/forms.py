@@ -8,7 +8,7 @@ class ProductForm(forms.ModelForm):
         model = Product
         fields = [
             'title', 'brand', 'category', 'description',
-            'serie_number', 'cost_price', 'selling_price', 'quantity'
+            'serie_number', 'cost_price', 'selling_price'
         ]
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
@@ -17,16 +17,14 @@ class ProductForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
             'serie_number': forms.TextInput(attrs={'class': 'form-control'}),
             'cost_price': forms.NumberInput(attrs={'class': 'form-control'}),
-            'selling_price': forms.NumberInput(attrs={'class': 'form-control'}),
-            'quantity': forms.NumberInput(attrs={'class': 'form-control'}),
+            'selling_price': forms.NumberInput(attrs={'class': 'form-control'})
         }
         labels = {
-            'title': 'Nome',
-            'description': 'Descrição',
+            'title': 'Título',
             'brand': 'Marca',
-            'category': 'Categoria',
+            'category': 'Categoria',            
+            'description': 'Descrição',
             'serie_number': 'Número de Série',
             'cost_price': 'Preço de Custo',
-            'selling_price': 'Preço de Venda',
-            'quantity': 'Quantidade',
+            'selling_price': 'Preço de Venda'
         }

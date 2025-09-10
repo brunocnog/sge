@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    SGE - Marcas
+    SGE - Produtos
 {% endblock title %}
 
 {% block content %}
@@ -11,7 +11,7 @@
 
   <div class="card">
     <div class="card-body">
-      <p class="card-text">Tem certeza de que deseja excluir a categoria <strong> {{ object.name }}?</strong></p>
+      <p class="card-text">Tem certeza de que deseja excluir o produto <strong> {{ object.title }}?</strong></p>
 
       <form method="post">
         {% csrf_token %}
@@ -20,7 +20,7 @@
                    
     </div>           
   </div>
-    <a href="{% url 'brand_list' %}" class="btn btn-secondary mt-3">Cancelar e Voltar para a lista de Categorias</a>
+    <a href="{% url 'product_list' %}" class="btn btn-secondary mt-3">Cancelar e Voltar para a lista de Produtos</a>
 </div>
 
 {% endblock content %}
