@@ -5,7 +5,6 @@
 {% endblock %}
 
 {% block content %}
-<!-- <h1>Minha tela de Dashbord</h1> -->
 
 {% include 'components/_product_metrics.html' %}
 {% include 'components/_sales_metrics.html' %}
@@ -76,16 +75,67 @@
   </script>    
 </div>
 
-
-
-<div class="row mt-4 justify-content-center">
+<div class="row mt-5 justify-content-center">
   <div class="col-md-6 text-center">
-    <h5 class="text-center mb-3">xxxxxxxxxxx</h5>
+    <h5 class="mb-3">Produtos por Categoria</h5>
+    <div class="mb-4"></div>
+    <div class="embed-responsive embed-responsive-1by1" style="width: 400px; display: inline-block;">
+      <canvas id="productByCategoryChart" class="embed-responsive-item"></canvas>
+    </div>    
   </div>
 
   <div class="col-md-6 text-center">
-    <h5 class="text-center mb-3">xxxxxxxxxxx</h5>
+    <h5 class="mb-3">Produtos por Marca</h5>
+    <div class="mb-4"></div>
+    <div style="width: 400px; display: inline-block;">
+      <canvas id="productByBrandChart" class="embed-responsive-item"></canvas>
+    </div>
   </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {  
+      var productCountByCategory = JSON.parse('{{ product_count_by_category|safe }}');
+      var productCountByBrand = JSON.parse('{{ product_count_by_brand|safe }}');
+
+      var ctxCategory = document.getElementById('productByCategoryChart').getContext('2d');
+      var productByCategoryChart = new Chart(ctxCategory, {
+        type: 'doughnut',
+        data: {
+          labels: Object.keys(productCountByCategory),
+          datasets: [{
+            data: Object.values(productCountByCategory),
+            borderWidth: 1
+          }]
+        },
+        options: {
+          plugins: {
+            legend: {
+              display: false
+            },
+          }
+        }
+      });
+
+      var ctxBrand = document.getElementById('productByBrandChart').getContext('2d');
+      var productByBrandChart = new Chart(ctxBrand, {
+        type: 'doughnut',
+        data: {
+          labels: Object.keys(productCountByBrand),
+          datasets: [{
+            data: Object.values(productCountByBrand),
+            borderWidth: 1
+          }]
+        },
+        options: {
+          plugins: {
+            legend: {
+              display: false
+            },
+          }
+        }
+      });
+    });
+  </script>    
 </div>
 
 {% endblock %}

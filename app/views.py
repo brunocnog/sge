@@ -6,14 +6,22 @@ from . import metrics
 def home(request):
     product_metrics = metrics.get_product_metrics()
     sales_metrics = metrics.get_sales_metrics()
+
     daily_sales_data = metrics.get_daily_sales_data()
     daily_sales_quantity_data = metrics.get_daily_sales_quantity_data()
+
+    product_count_by_category = metrics.get_graphic_product_category_metric()
+    product_count_by_brand = metrics.get_graphic_product_brand_metric()
 
     context = {
         'product_metrics': product_metrics,
         'sales_metrics': sales_metrics,
+
         'daily_sales_data': json.dumps(daily_sales_data),
-        'daily_sales_quantity_data':json.dumps(daily_sales_quantity_data),
+        'daily_sales_quantity_data': json.dumps(daily_sales_quantity_data),
+
+        'product_count_by_category': json.dumps(product_count_by_category),
+        'product_count_by_brand': json.dumps(product_count_by_brand),
     }
 
     return render(request, 'home.html', context)
