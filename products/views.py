@@ -4,7 +4,7 @@ from .models import Product
 from .forms import ProductForm
 from categories.models import Category
 from brands.models import Brand
-
+from app.metrics import get_product_metrics
 
 class ProductListView(ListView):
     model = Product
@@ -38,6 +38,7 @@ class ProductListView(ListView):
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
         context['brands'] = Brand.objects.all()
+        context['product_metrics'] = get_product_metrics()
         return context
     
 
@@ -63,4 +64,3 @@ class ProductDeleteView(DeleteView):
     model = Product
     template_name = 'product_delete.html'
     success_url = reverse_lazy('product_list')
-    
