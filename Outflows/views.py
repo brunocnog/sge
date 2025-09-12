@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.views.generic import ListView, CreateView, DetailView
 from django.urls import reverse_lazy
 from .models import Outflow
@@ -6,12 +6,13 @@ from .forms import OutflowForm
 from app.metrics import get_sales_metrics
 
 
-class OutflowListView(LoginRequiredMixin, ListView):
+class OutflowListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     model = Outflow
     template_name = 'outflow_list.html'
     context_object_name = 'outflows'
     ordering = ['id']
     paginate_by = 10
+    permission_required = 'outflows.view_outflow'
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -27,13 +28,15 @@ class OutflowListView(LoginRequiredMixin, ListView):
         context['sales_metrics'] = get_sales_metrics()
         return context    
 
-class OutflowCreateView(LoginRequiredMixin, CreateView):
+class OutflowCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Outflow
     template_name = 'outflow_create.html'
     form_class = OutflowForm
-    success_url = reverse_lazy('outflow_list')    
+    success_url = reverse_lazy('outflow_list')   
+    permission_required = 'outflows.add_outflow' 
 
 
-class OutflowDetailView(LoginRequiredMixin, DetailView):
+class OutflowDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
     model = Outflow
     template_name = 'outflow_detail.html'
+    permission_required = 'outflows.view_outflow'
