@@ -45,11 +45,11 @@ class OutflowDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView)
     permission_required = 'outflows.view_outflow'
 
 
-class OutflowsCreateListAPIView(generics.ListCreateAPIView):
+class OutflowCreateListAPIView(generics.ListCreateAPIView):
     queryset = Outflow.objects.all()
     serializer_class = OutflowSerializer
 
 
-class OutflowsRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+class OutflowRetrieveAPIView(generics.RetrieveAPIView):
     queryset = Outflow.objects.all()
     serializer_class = OutflowSerializer
