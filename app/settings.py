@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'products',
     'inflows',
     'outflows',
+    'authentication',
 
 ]
 
@@ -145,6 +146,7 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.DjangoModelPermissions',
     ),
 }
 
