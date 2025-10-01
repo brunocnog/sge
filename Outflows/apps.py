@@ -7,4 +7,4 @@ class OutflowsConfig(AppConfig):
     verbose_name = 'Saída de Produto do Estoque'
 
     def ready(self):
-        import outflows.signals
+        import outflows.signals  # noqa: F401

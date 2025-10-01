@@ -7,4 +7,4 @@ class InflowsConfig(AppConfig):
     verbose_name = 'Entrada de Produto no Estoque'
 
     def ready(self):
-        import inflows.signals
+        import inflows.signals  # noqa: F401
