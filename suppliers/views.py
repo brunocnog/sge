@@ -1,8 +1,10 @@
+from rest_framework import generics
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Supplier
 from .forms import SupplierForm
+from .serializers import SupplierSerializer
 
 
 class SupplierListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
@@ -21,14 +23,14 @@ class SupplierListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
             queryset = queryset.filter(name__icontains=name)
 
         return queryset
-    
+
 
 class SupplierCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Supplier
     template_name = 'supplier_create.html'
     form_class = SupplierForm
     success_url = reverse_lazy('supplier_list')
-    permission_required = 'suppliers.add_supplier'   
+    permission_required = 'suppliers.add_supplier'
 
 
 class SupplierDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
@@ -38,14 +40,25 @@ class SupplierDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView
 
 
 class SupplierUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
-    model =Supplier
+    model = Supplier
     template_name = 'supplier_update.html'
     form_class = SupplierForm
     success_url = reverse_lazy('supplier_list')
     permission_required = 'suppliers.change_supplier'
+
 
 class SupplierDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = Supplier
     template_name = 'supplier_delete.html'
     success_url = reverse_lazy('supplier_list')
     permission_required = 'suppliers.delete_supplier'
+
+
+class SuppliersCreateListAPIView(generics.ListCreateAPIView):
+    queryset = Supplier.objects.all()
+    serializer_class = SupplierSerializer
+
+
+class SuppliersRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Supplier.objects.all()
+    serializer_class = SupplierSerializer
