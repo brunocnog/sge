@@ -7,7 +7,7 @@ class OutflowForm(forms.ModelForm):
 
     class Meta:
         model = Outflow
-        fields = ['product', 'quantity', 'description']        
+        fields = ['product', 'quantity', 'description']
         widgets = {
             'product': forms.Select(attrs={'class': 'form-control'}),
             'quantity': forms.NumberInput(attrs={'class': 'form-control'}),
@@ -31,6 +31,5 @@ class OutflowForm(forms.ModelForm):
             raise ValidationError(
                 f'Insira uma quantidade válida para o produto {product.title}. Estoque atual: {product.quantity} unidades.'
             )
-        
+
         return quantity
-    

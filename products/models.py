@@ -3,7 +3,6 @@ from brands.models import Brand
 from categories.models import Category
 
 
-
 class Product(models.Model):
     title = models.CharField(max_length=500, verbose_name='Produto')
     brand = models.ForeignKey(Brand, on_delete=models.PROTECT, related_name='products', verbose_name='Marca')
@@ -22,4 +21,3 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
-    

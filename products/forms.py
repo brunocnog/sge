@@ -22,7 +22,7 @@ class ProductForm(forms.ModelForm):
         labels = {
             'title': 'Título',
             'brand': 'Marca',
-            'category': 'Categoria',            
+            'category': 'Categoria',
             'description': 'Descrição',
             'serie_number': 'Número de Série',
             'cost_price': 'Preço de Custo',

@@ -2,7 +2,6 @@ from rest_framework import generics
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from django.shortcuts import redirect
 from .models import Category
 from .forms import CategoryForm
 from .serializers import CategorySerializer
