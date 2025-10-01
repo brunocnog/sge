@@ -1,8 +1,10 @@
+from rest_framework import generics
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.views.generic import ListView, CreateView, DetailView
 from django.urls import reverse_lazy
 from .models import Outflow
 from .forms import OutflowForm
+from .serializers import OutflowSerializer
 from app.metrics import get_sales_metrics
 
 
@@ -22,21 +24,32 @@ class OutflowListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
             queryset = queryset.filter(product__title__icontains=product)
 
         return queryset
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['sales_metrics'] = get_sales_metrics()
-        return context    
+        return context
+
 
 class OutflowCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Outflow
     template_name = 'outflow_create.html'
     form_class = OutflowForm
-    success_url = reverse_lazy('outflow_list')   
-    permission_required = 'outflows.add_outflow' 
+    success_url = reverse_lazy('outflow_list')
+    permission_required = 'outflows.add_outflow'
 
 
 class OutflowDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
     model = Outflow
     template_name = 'outflow_detail.html'
     permission_required = 'outflows.view_outflow'
+
+
+class OutflowsCreateListAPIView(generics.ListCreateAPIView):
+    queryset = Outflow.objects.all()
+    serializer_class = OutflowSerializer
+
+
+class OutflowsRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Outflow.objects.all()
+    serializer_class = OutflowSerializer
