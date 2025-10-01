@@ -1,9 +1,11 @@
+from rest_framework import generics
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from .models import Category
 from .forms import CategoryForm
+from .serializers import CategorySerializer
 
 
 class CategoryListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
@@ -22,13 +24,13 @@ class CategoryListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
             queryset = queryset.filter(name__icontains=name)
 
         return queryset
-    
+
 
 class CategoryCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Category
     template_name = 'category_create.html'
     form_class = CategoryForm
-    success_url = reverse_lazy('category_list')    
+    success_url = reverse_lazy('category_list')
     permission_required = 'categories.add_category'
 
 
@@ -37,6 +39,7 @@ class CategoryDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView
     template_name = 'category_detail.html'
     permission_required = 'categories.view_category'
 
+
 class CategoryUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Category
     template_name = 'category_update.html'
@@ -44,16 +47,26 @@ class CategoryUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView
     success_url = reverse_lazy('category_list')
     permission_required = 'categories.change_category'
 
+
 class CategoryDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = Category
     template_name = 'category_delete.html'
     success_url = reverse_lazy('category_list')
     permission_required = 'categories.delete_category'
     # raise_exception = True
-    
+
     # def get_permission_denied_message(self):
     #     return "Você não tem permissão para acessar esta página."
 
     # def handle_no_permission(self):
     #     return redirect('category_list')
-    
+
+
+class CategoriesCreateListAPIView(generics.ListCreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+
+class CategoriesRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
