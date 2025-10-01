@@ -6,6 +6,7 @@ from .models import Brand
 from .forms import BrandForm
 from .serializers import BrandSerializer
 
+
 class BrandListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     model = Brand
     template_name = 'brand_list.html'
@@ -22,7 +23,7 @@ class BrandListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
             queryset = queryset.filter(name__icontains=name)
 
         return queryset
-    
+
 
 class BrandCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Brand
@@ -45,12 +46,13 @@ class BrandUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     success_url = reverse_lazy('brand_list')
     permission_required = 'brands.change_brand'
 
+
 class BrandDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = Brand
     template_name = 'brand_delete.html'
     success_url = reverse_lazy('brand_list')
     permission_required = 'brands.delete_brand'
-    
+
 
 class BrandCreateListAPIView(generics.ListCreateAPIView):
     queryset = Brand.objects.all()
