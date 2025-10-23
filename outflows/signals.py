@@ -21,9 +21,11 @@ def send_outflow_event(sender, instance, **kwargs):
     data = {
         'event_type': 'create_outflow',
         'timestamp': datetime.now().strftime('%d/%m/%Y %H:%M:%S'),
-        'product': str(instance.product),
+        'product': instance.product.title,
+        'product_cost_price': float(instance.product.cost_price),
+        'product_selling_price': float(instance.product.selling_price),
         'quantity': instance.quantity,
         'description': instance.description,
     }
 
-    notify.send_event(data)
+    notify.send_order_event(data)
